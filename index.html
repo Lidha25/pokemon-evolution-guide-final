@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pokémon Evolution Guide</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="pokeball-logo">
+            <div class="pokeball-line"></div>
+        </div>
+
+        <h1>Pokémon Evolution Guide</h1>
+
+        <p class="subtitle">
+            Should I evolve this Pokémon?
+        </p>
+
+        <p class="intro">
+            Search for a Pokémon to compare its stats with its next evolution
+            and get a recommendation.
+        </p>
+    </header>
+
+
+    <main class="container">
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+
+            <label for="pokemonSearch">
+                Search Pokémon
+            </label>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="pokemonSearch"
+                    list="pokemonList"
+                    placeholder="e.g. Pikachu, Bulbasaur..."
+                    autocomplete="off"
+                >
+
+                <datalist id="pokemonList"></datalist>
+
+                <button id="searchButton">
+                    Check Pokémon
+                </button>
+
+            </div>
+
+            <p id="loadingMessage" class="loading">
+                Loading Pokémon data...
+            </p>
+
+            <p id="errorMessage" class="error"></p>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section id="results" class="results hidden">
+
+            <!-- CURRENT POKEMON -->
+            <div class="pokemon-card">
+
+                <div class="pokemon-image-container">
+
+                    <span id="pokemonId" class="pokemon-number">
+                        #001
+                    </span>
+
+                    <img
+                        id="pokemonImage"
+                        src=""
+                        alt="Pokémon"
+                    >
+
+                </div>
+
+
+                <div class="pokemon-information">
+
+                    <h2 id="pokemonName">
+                        Bulbasaur
+                    </h2>
+
+                    <div id="pokemonTypes" class="types"></div>
+
+
+                    <h3>Base Stats</h3>
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>HP</span>
+                                <span id="hpValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="hpBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>Attack</span>
+                                <span id="attackValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="attackBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>Defense</span>
+                                <span id="defenseValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="defenseBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>Special Attack</span>
+                                <span id="specialAttackValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="specialAttackBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>Special Defense</span>
+                                <span id="specialDefenseValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="specialDefenseBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="stat">
+                            <div class="stat-label">
+                                <span>Speed</span>
+                                <span id="speedValue">0</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="speedBar" class="stat-fill"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bst">
+                        <span>Base Stat Total</span>
+                        <strong id="bstValue">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EVOLUTION SECTION -->
+            <section class="evolution-section">
+
+                <h2>Evolution Chain</h2>
+
+                <div id="evolutionChain" class="evolution-chain">
+                </div>
+
+            </section>
+
+
+            <!-- RECOMMENDATION -->
+            <section id="recommendation" class="recommendation">
+
+                <div id="recommendationIcon" class="recommendation-icon">
+                    🟢
+                </div>
+
+                <div>
+
+                    <h2 id="recommendationTitle">
+                        YES — EVOLVE IT!
+                    </h2>
+
+                    <p id="recommendationText">
+                        This Pokémon has a stronger next evolution.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- COMPARISON -->
+            <section id="comparisonSection" class="comparison-section">
+
+                <h2>Current Pokémon vs Next Evolution</h2>
+
+                <div class="comparison-table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th id="currentPokemonHeader">
+                                    Current
+                                </th>
+                                <th id="nextPokemonHeader">
+                                    Next Evolution
+                                </th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>HP</td>
+                                <td id="compareHpCurrent">-</td>
+                                <td id="compareHpNext">-</td>
+                                <td id="compareHpChange">-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Attack</td>
+                                <td id="compareAttackCurrent">-</td>
+                                <td id="compareAttackNext">-</td>
+                                <td id="compareAttackChange">-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Defense</td>
+                                <td id="compareDefenseCurrent">-</td>
+                                <td id="compareDefenseNext">-</td>
+                                <td id="compareDefenseChange">-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Special Attack</td>
+                                <td id="compareSpecialAttackCurrent">-</td>
+                                <td id="compareSpecialAttackNext">-</td>
+                                <td id="compareSpecialAttackChange">-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Special Defense</td>
+                                <td id="compareSpecialDefenseCurrent">-</td>
+                                <td id="compareSpecialDefenseNext">-</td>
+                                <td id="compareSpecialDefenseChange">-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Speed</td>
+                                <td id="compareSpeedCurrent">-</td>
+                                <td id="compareSpeedNext">-</td>
+                                <td id="compareSpeedChange">-</td>
+                            </tr>
+
+                            <tr class="total-row">
+                                <td>Base Stat Total</td>
+                                <td id="compareBstCurrent">-</td>
+                                <td id="compareBstNext">-</td>
+                                <td id="compareBstChange">-</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Pokémon Evolution Guide
+        </p>
+
+        <p class="footer-small">
+            Built with HTML, CSS, JavaScript and Pokémon CSV data.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
