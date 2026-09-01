@@ -35,7 +35,7 @@ body {
     overflow: hidden;
 
     background:
-        linear-gradient(180deg, #ffd86b 0%, #f28c28 0%, #222222 100%);
+       #f4b400;
 
     color: #123b68;
     text-align: center;
