@@ -35,7 +35,7 @@ body {
     overflow: hidden;
 
     background:
-        radial-gradient(circle at 50% 45%, #ffd86b 0%, #ffb347 45%, #f28c28 100%);
+        linear-gradient(180deg, #ffd86b 0%, #f28c28 45%, #222222 100%);
 
     color: #123b68;
     text-align: center;
