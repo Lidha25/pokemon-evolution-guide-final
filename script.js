@@ -1107,38 +1107,3 @@ document
 ========================================================= */
 
 loadPokemonData(); 
-/* =========================================================
-   FEATURED POKÉMON CARDS
-========================================================= */
-
-document
-    .querySelectorAll(".featured-pokemon-card")
-    .forEach(card => {
-
-        card.addEventListener("click", function () {
-
-            const pokemonName =
-                this.dataset.pokemon;
-
-            const searchInput =
-                document.getElementById("pokemonSearch");
-
-            searchInput.value =
-                pokemonName;
-
-            showPokemon(pokemonName);
-
-            /*
-             * Smoothly scroll to the results.
-             */
-
-            document
-                .getElementById("results")
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-        });
-
-    });
